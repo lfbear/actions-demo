@@ -18,4 +18,4 @@ jobs:
           git config --global user.name 'GA Robot'
           git config --global user.email '<>'
           git commit -am "Modify version info"
-          git push
+          git push origin ${{ github.base.ref }}
