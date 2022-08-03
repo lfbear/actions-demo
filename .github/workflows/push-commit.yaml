@@ -17,5 +17,5 @@ jobs:
           git config --global user.name 'GA Robot'
           git config --global user.email '<>'
           git add .
-          git commit -am "Modify version info"
-          git push
+          git commit -m "Modify version info"
+          git push origin main
