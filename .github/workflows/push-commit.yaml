@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          ref: main
 
       - name: Modify version info
         run: sed -i "s#version:\w*#version:${{ github.sha }}#" version.yaml
