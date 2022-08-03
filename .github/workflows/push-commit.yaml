@@ -7,15 +7,19 @@ jobs:
     name: deploy to xxx
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: main
 
       - name: Modify version
         run: sed -i "s#version:\w*#version:${{ github.sha }}#" version.yaml
 
       - name: Commit report
         run: |
-          git config --global user.name 'GA Robot'
-          git config --global user.email '<>'
+          git config --local user.name 'GA Robot'
+          git config --local user.email '<>'
           git add .
           git commit -m "Modify version info"
-          git push origin main
+          git push
