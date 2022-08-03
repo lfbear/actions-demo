@@ -8,12 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: main
 
-      - name: Modify version
+      - name: Modify version info
         run: sed -i "s#version:\w*#version:${{ github.sha }}#" version.yaml
 
       - name: Commit report
@@ -21,5 +20,5 @@ jobs:
           git config --local user.name 'GA Robot'
           git config --local user.email '<>'
           git add .
-          git commit -m "Modify version info"
+          git commit -m "🤖 Release New Version"
           git push
