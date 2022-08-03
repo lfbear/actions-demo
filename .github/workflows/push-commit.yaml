@@ -1,0 +1,21 @@
+on:
+  push:
+    tags:
+      - case1/*
+jobs:
+  deploy:
+    name: deploy to xxx
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Modify version
+        run: sed -i "s#version:\w*#version:${{ github.sha }}#" version.yaml
+
+      - name: Commit report
+        run: |
+          git config --global user.name 'GA Robot'
+          git config --global user.email '<>'
+          git commit -am "Modify version info"
+          git push
